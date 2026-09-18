@@ -177,7 +177,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$FORK_VERSION" dist/rclone-*.zip dist/SHA256SUMS \
+          gh release create --repo "$GITHUB_REPOSITORY" "$FORK_VERSION" dist/rclone-*.zip dist/SHA256SUMS \
             --title "rclone $FORK_VERSION for DBX plugin" \
             --notes "dbx fork build. Asset naming and SHA256SUMS follow the official rclone convention; see dbx-plugin-files contrib/rclone-fork/README.md." \
             --verify-tag
