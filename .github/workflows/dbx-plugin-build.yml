@@ -159,7 +159,7 @@ jobs:
     needs: [linux, windows, macos]
     runs-on: ubuntu-24.04
     timeout-minutes: 15
-    if: startsWith(github.ref, 'refs/tags/dbx-v')
+    if: startsWith(github.ref, 'refs/tags/v') && contains(github.ref_name, '-dbx')
     permissions:
       contents: write
     steps:
