@@ -146,7 +146,7 @@ jobs:
       - name: Cross-compile darwin amd64
         run: go run bin/cross-compile.go -include '^darwin/amd64' -cgo -tags 'cmount noselfupdate' "$FORK_VERSION"
       - name: Cross-compile darwin arm64
-        run: go run bin/cross-compile.go -include '^darwin/arm64' -cgo -macos-arch arm64 -cgo-cflags=-I/usr/local/include -cgo-ldflags=-L/usr/local/lib -tags 'cmount noselfupdate' "$FORK_VERSION"
+        run: go run bin/cross-compile.go -include '^darwin/arm64' -cgo -macos-arch arm64 -cgo-cflags=-I/usr/local/include -cgo-ldflags=-L/usr/local/lib -no-clean -tags 'cmount noselfupdate' "$FORK_VERSION"
       - uses: actions/upload-artifact@v7
         with:
           name: rclone-darwin
