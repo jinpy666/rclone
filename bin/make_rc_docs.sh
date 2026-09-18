@@ -3,7 +3,7 @@
 
 set -e
 
-go install
+go install -tags "${GOTAGS:-}"
 mkdir -p /tmp/rclone/cache_test
 mkdir -p /tmp/rclone/rc_mount
 export RCLONE_CONFIG_RCDOCS_TYPE=cache
