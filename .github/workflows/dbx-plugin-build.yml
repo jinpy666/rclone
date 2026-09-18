@@ -18,7 +18,9 @@ on:
   push:
     # dbx（裸名）与 dbx/** 前缀分支；dbx/** 不匹配裸名，需并列声明
     branches: [dbx, 'dbx/**']
-    tags: ['dbx-v*']
+    # 版本须为 semver（resource_windows.go 校验，剥 v 前缀后解析），
+    # 如 v1.75.1-dbx.1；dbx 前缀写法会被 windows 宿主构建拒绝
+    tags: ['v*-dbx*']
   workflow_dispatch:
   schedule:
     # 每周一检查上游新版本（见 check-upstream job）；注意 GitHub 会在仓库
@@ -29,7 +31,7 @@ permissions:
   contents: read
 
 env:
-  # 版本即产物名与 fs.Version：tag 构建用 tag 名（如 dbx-v1.75.1-1），
+  # 版本即产物名与 fs.Version：tag 构建用 tag 名（如 v1.75.1-dbx.1），
   # 分支构建用 dbx-<sha> 供联调。
   FORK_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || format('dbx-{0}', github.sha) }}
   # windows runner 的 python 默认 cp1252，make doc 读 docs/*.md 会
